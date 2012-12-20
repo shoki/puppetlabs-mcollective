@@ -37,7 +37,7 @@ class mcollective::plugins(
     notify => Class['mcollective::server::service'],
   }
 
-  mcollective::plugins::plugin { 'registration':
+  mcollective::plugins::plugin { 'registration-monitor':
     ensure      => present,
     type        => 'agent',
     ddl         => false,
