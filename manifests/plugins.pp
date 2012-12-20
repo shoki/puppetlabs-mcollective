@@ -47,10 +47,10 @@ class mcollective::plugins(
     ensure => present,
     type   => 'facts',
   }
-  mcollective::plugins::plugin { 'yaml_facts':
-    ensure => present,
-    type   => 'facts',
-  }
+  #mcollective::plugins::plugin { 'yaml_facts':
+  #ensure => present,
+  #type   => 'facts',
+  #}
   mcollective::plugins::plugin { 'service':
     ensure      => present,
     type        => 'agent',

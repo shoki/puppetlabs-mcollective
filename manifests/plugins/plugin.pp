@@ -44,9 +44,27 @@ define mcollective::plugins::plugin(
     fail('DDLs and Applications only apply to Agent plugins')
   }
 
+  case $type {
+    'agent': {
+      $source => "${module_source}/${type}/${name}/${type}/${name}.rb",
+    }
+    'registration': {
+      $source => "${module_source}/${type}/${name}.rb",
+    }
+    'facts': {
+      $source => "${module_source}/${type}/facter/${name}.rb",
+    }
+  }
+
+  case $name {
+    'registration-monitor': { 
+      $source => "${module_source}/${type}/${name}/registration.rb",
+    }
+  }
+
   file { "${plugin_base_real}/${type}/${name}.rb":
     ensure => $ensure,
-    source => "${module_source}/${type}/${name}/${type}/${name}.rb",
+    source => $source,
     notify => Class['mcollective::server::service'],
   }
 
