@@ -44,21 +44,21 @@ define mcollective::plugins::plugin(
     fail('DDLs and Applications only apply to Agent plugins')
   }
 
-  file { "${plugin_base_real}/${type}/${name}/${type}/${name}.rb":
+  file { "${plugin_base_real}/${type}/${name}.rb":
     ensure => $ensure,
     source => "${module_source}/${type}/${name}/${type}/${name}.rb",
     notify => Class['mcollective::server::service'],
   }
 
   if $ddl {
-    file { "${plugin_base_real}/${type}/${name}/${type}/${name}.ddl":
+    file { "${plugin_base_real}/${type}/${name}.ddl":
       ensure => $ensure,
       source => "${module_source}/${type}/${name}/${type}/${name}.ddl",
     }
   }
 
   if $application {
-    file { "${plugin_base_real}/agent/${name}/application/${name}.rb":
+    file { "${plugin_base_real}/application/${name}.rb":
       ensure => $ensure,
       source => "${module_source}/agent/${name}/application/${name}.rb",
     }
