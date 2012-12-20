@@ -46,19 +46,17 @@ define mcollective::plugins::plugin(
 
   case $type {
     'agent': {
-      $source = "${module_source}/${type}/${name}/${type}/${name}.rb"
+      if $name == 'registration-monitor' {
+        $source = "${module_source}/${type}/${name}/registration.rb"
+      } else {
+        $source = "${module_source}/${type}/${name}/${type}/${name}.rb"
+      }
     }
     'registration': {
       $source = "${module_source}/${type}/${name}.rb"
     }
     'facts': {
       $source = "${module_source}/${type}/facter/${name}.rb"
-    }
-  }
-
-  case $name {
-    'registration-monitor': { 
-      $source = "${module_source}/${type}/${name}/registration.rb"
     }
   }
 
