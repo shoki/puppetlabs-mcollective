@@ -52,9 +52,10 @@ class mcollective::plugins(
 
   mcollective::plugins::plugin { 'dsh':
     ensure      => present,
-    type        => 'application',
+    type        => 'agent',
+    agent       => false,
     ddl         => false,
-    application => false,
+    application => true,
   }
 
   mcollective::plugins::plugin { 'facter_facts':

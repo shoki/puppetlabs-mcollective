@@ -22,6 +22,7 @@ define mcollective::plugins::plugin(
   $ensure      = present,
   $ddl         = false,
   $application = false,
+  $agent       = false,
   $plugin_base = $mcollective::params::plugin_base,
   $module_source = 'puppet:///modules/mcollective/plugins'
 ) {
@@ -45,7 +46,7 @@ define mcollective::plugins::plugin(
   }
 
   case $type {
-    'agent', 'application': {
+    'agent': {
       if $name == 'registration-monitor' {
         $source = "${module_source}/${type}/${name}/registration.rb"
       } else {
@@ -60,10 +61,12 @@ define mcollective::plugins::plugin(
     }
   }
 
-  file { "${plugin_base_real}/${type}/${name}.rb":
-    ensure => $ensure,
-    source => $source,
-    notify => Class['mcollective::server::service'],
+  if $agent {
+    file { "${plugin_base_real}/${type}/${name}.rb":
+      ensure => $ensure,
+      source => $source,
+      notify => Class['mcollective::server::service'],
+    }
   }
 
   if $ddl {
