@@ -58,6 +58,14 @@ class mcollective::plugins(
     application => true,
   }
 
+  mcollective::plugins::plugin { 'process':
+    ensure      => present,
+    type        => 'agent',
+    agent       => true,
+    ddl         => true,
+    application => false,
+  }
+
   mcollective::plugins::plugin { 'facter_facts':
     ensure => present,
     type   => 'facts',
