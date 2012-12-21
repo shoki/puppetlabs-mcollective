@@ -45,7 +45,7 @@ define mcollective::plugins::plugin(
   }
 
   case $type {
-    'agent': {
+    'agent', 'application': {
       if $name == 'registration-monitor' {
         $source = "${module_source}/${type}/${name}/registration.rb"
       } else {
