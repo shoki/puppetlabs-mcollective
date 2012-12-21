@@ -36,13 +36,20 @@ class mcollective::plugins(
     ensure => directory,
     notify => Class['mcollective::server::service'],
   }
-
   mcollective::plugins::plugin { 'registration-monitor':
     ensure      => present,
     type        => 'agent',
     ddl         => false,
     application => false,
   }
+
+  mcollective::plugins::plugin { 'puppetd':
+    ensure      => present,
+    type        => 'agent',
+    ddl         => true,
+    application => true,
+  }
+
   mcollective::plugins::plugin { 'facter_facts':
     ensure => present,
     type   => 'facts',
