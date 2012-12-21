@@ -70,6 +70,7 @@ define mcollective::plugins::plugin(
     file { "${plugin_base_real}/${type}/${name}.ddl":
       ensure => $ensure,
       source => "${module_source}/${type}/${name}/${type}/${name}.ddl",
+      notify => Class['mcollective::server::service'],
     }
   }
 
@@ -77,6 +78,7 @@ define mcollective::plugins::plugin(
     file { "${plugin_base_real}/application/${name}.rb":
       ensure => $ensure,
       source => "${module_source}/agent/${name}/application/${name}.rb",
+      notify => Class['mcollective::server::service'],
     }
   }
 

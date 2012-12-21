@@ -50,14 +50,17 @@ class mcollective::plugins(
     application => true,
   }
 
+  mcollective::plugins::plugin { 'dsh':
+    ensure      => present,
+    type        => 'application',
+    ddl         => false,
+    application => false,
+  }
+
   mcollective::plugins::plugin { 'facter_facts':
     ensure => present,
     type   => 'facts',
   }
-  #mcollective::plugins::plugin { 'yaml_facts':
-  #ensure => present,
-  #type   => 'facts',
-  #}
   mcollective::plugins::plugin { 'service':
     ensure      => present,
     type        => 'agent',
