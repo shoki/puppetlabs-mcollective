@@ -74,13 +74,13 @@ class mcollective::plugins(
     ensure      => present,
     type        => 'agent',
     ddl         => true,
-    application => false,
+    application => true,
   }
   mcollective::plugins::plugin { 'package':
     ensure      => present,
     type        => 'agent',
     ddl         => true,
-    application => false,
+    application => true,
   }
   mcollective::plugins::plugin { 'meta':
     ensure      => present,
