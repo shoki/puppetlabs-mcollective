@@ -22,7 +22,7 @@ define mcollective::plugins::plugin(
   $ensure      = present,
   $ddl         = false,
   $application = false,
-  $agent       = false,
+  $agent       = true,
   $plugin_base = $mcollective::params::plugin_base,
   $module_source = 'puppet:///modules/mcollective/plugins'
 ) {

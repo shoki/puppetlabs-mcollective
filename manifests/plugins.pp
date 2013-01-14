@@ -61,7 +61,6 @@ class mcollective::plugins(
   mcollective::plugins::plugin { 'process':
     ensure      => present,
     type        => 'agent',
-    agent       => true,
     ddl         => true,
     application => false,
   }
@@ -69,7 +68,6 @@ class mcollective::plugins(
   mcollective::plugins::plugin { 'facter_facts':
     ensure => present,
     type   => 'facts',
-    agent  => true,
   }
 
   mcollective::plugins::plugin { 'service':
